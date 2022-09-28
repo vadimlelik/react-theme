@@ -8,14 +8,18 @@ import { useEffect } from "react";
 import {
   selectAllCountries,
   selectCountriesInfo,
+  selectVisibleCountries,
 } from "../store/countries/countries-selector";
 import { loadCountries } from "../store/countries/countries-action";
+import { selectSearch } from "../store/control/controls-selector";
 
 export const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const countries = useSelector(selectAllCountries);
+  const search = useSelector(selectSearch);
+  const countries = useSelector((state) =>
+    selectVisibleCountries(state, { search })
+  );
   const { status, error, qty } = useSelector(selectCountriesInfo);
 
   useEffect(() => {
@@ -26,8 +30,10 @@ export const HomePage = () => {
   return (
     <>
       <Controls />
+
       {error && <h1>can't featch data</h1>}
       {status === "loading" && <h1> Loading</h1>}
+
       <List>
         {countries.map((c) => {
           const countryInfo = {
