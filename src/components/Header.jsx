@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Container } from "./Container";
 import { setTheme } from "../store/theme/theme-actions";
+import { setReset } from "./../store/control/controls-action";
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -47,7 +48,9 @@ export const Header = () => {
     <HeaderEl>
       <Container>
         <Wrapper>
-          <Title>Where is the world?</Title>
+          <Title onClick={() => dispatch(setReset())}>
+            Where is the world?
+          </Title>
           <ModeSwitcher
             onClick={() =>
               dispatch(setTheme(theme === "light" ? "dark" : "light"))

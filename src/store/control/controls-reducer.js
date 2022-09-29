@@ -1,4 +1,4 @@
-import { SET_REGION, SET_SEARCH } from './controls-action';
+import { SET_REGION, SET_RESET, SET_SEARCH } from './controls-action';
 
 
 const initialState = {
@@ -20,6 +20,9 @@ export const controlReducer = (state = initialState, { type, payload }) => {
 				...state,
 				region: payload
 			}
+		case SET_RESET:
+			return initialState
+
 		default:
 			return state;
 	}

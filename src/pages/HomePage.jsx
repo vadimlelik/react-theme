@@ -6,7 +6,6 @@ import { Card } from "../components/Card";
 import { Controls } from "../components/Controls";
 import { useEffect } from "react";
 import {
-  selectAllCountries,
   selectCountriesInfo,
   selectVisibleCountries,
 } from "../store/countries/countries-selector";
