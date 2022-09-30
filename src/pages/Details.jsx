@@ -6,7 +6,7 @@ import { Button } from "../components/Button";
 import { Info } from "../components/Info";
 import { selectDetails } from "../store/details/details-selector";
 import { useEffect } from "react";
-import { loadCuntryByName } from "../store/details/details-action";
+import {loadCuntryByName, setClearDetails} from "../store/details/details-action";
 
 export const Details = () => {
   const { name } = useParams();
@@ -16,6 +16,11 @@ export const Details = () => {
   const { currentCountry, error, status } = useSelector(selectDetails);
   useEffect(() => {
     dispatch(loadCuntryByName(name));
+
+
+    return ()=>{
+      dispatch(setClearDetails())
+    }
   }, [name, dispatch]);
   return (
     <div>
